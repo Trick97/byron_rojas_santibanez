@@ -34,13 +34,31 @@ def mostrar_inventario():
             f"Precio: ${producto['precio']}"
         )
 
+def buscar_producto():
+    nombre_buscar = input("Ingrese el nombre del producto a buscar: ")
+
+    encontrado = False
+
+    for producto in inventario:
+        if producto["nombre"].lower() == nombre_buscar.lower():
+            print("\nProducto encontrado:")
+            print(f"Nombre: {producto['nombre']}")
+            print(f"Cantidad: {producto['cantidad']}")
+            print(f"Precio: ${producto['precio']}")
+            encontrado = True
+            break
+
+    if not encontrado:
+        print("Producto no encontrado.")
+
 
 def menu():
     while True:
         print("\n===== GESTOR DE INVENTARIO =====")
         print("1. Agregar producto")
         print("2. Mostrar inventario")
-        print("3. Salir")
+        print("3. Buscar producto")
+        print("4. Salir")
 
         opcion = input("Seleccione una opción: ")
 
@@ -51,6 +69,9 @@ def menu():
             mostrar_inventario()
 
         elif opcion == "3":
+            buscar_producto()
+
+        elif opcion == "4":
             print("Programa finalizado.")
             break
 
